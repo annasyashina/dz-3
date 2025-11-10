@@ -3,20 +3,12 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"struct/list/bins"
 	"time"
 )
 
-type Bin struct {
-	id        string
-	private   bool
-	createdAt time.Time
-	name      string
-}
-
-type BinList = []Bin
-
 func main() {
-	binList := BinList{}
+	binList := bins.BinList{}
 
 	fmt.Println("Приложение для структуры")
 Menu:
@@ -46,7 +38,7 @@ func getMenu() int {
 	return variant
 }
 
-func printBinList(binList BinList) {
+func printBinList(binList bins.BinList) {
 	if len(binList) == 0 {
 		fmt.Println("Пока нет структур")
 	}
@@ -56,7 +48,7 @@ func printBinList(binList BinList) {
 	}
 }
 
-func addBinList(binList BinList) BinList {
+func addBinList(binList bins.BinList) bins.BinList {
 	var newId string
 	var newPrivate bool
 	var newCreated time.Time
@@ -85,11 +77,11 @@ func addBinList(binList BinList) BinList {
 	fmt.Println("Введите name")
 	fmt.Scan(&newName)
 
-	newBin := Bin{
-		id:        newId,
-		private:   newPrivate,
-		createdAt: newCreated,
-		name:      newName,
+	newBin := bins.Bin{
+		Id:        newId,
+		Private:   newPrivate,
+		CreatedAt: newCreated,
+		Name:      newName,
 	}
 	binList = append(binList, newBin)
 	//fmt.Println(binList)
@@ -97,12 +89,12 @@ func addBinList(binList BinList) BinList {
 	return binList
 }
 
-func deleteBinList(binList BinList) BinList {
+func deleteBinList(binList bins.BinList) bins.BinList {
 	var deleteId string
 	fmt.Println("Введите id")
 	fmt.Scan(&deleteId)
 	for index, value := range binList {
-		if value.id == deleteId {
+		if value.Id == deleteId {
 			binList[index] = binList[len(binList)-1]
 			return binList[:len(binList)-1]
 		}
