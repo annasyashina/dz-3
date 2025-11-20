@@ -22,9 +22,43 @@ Menu:
 		case 3:
 			binList = deleteBinList(binList)
 		case 4:
+			writeBinList(binList)
+		case 5:
+			binList = readBinList(binList)
+		case 6:
 			break Menu
 		}
 	}
+}
+
+func readBinList(binList bins.BinList) bins.BinList {
+	/*file, err := storage.ReadFile("storage.json")
+	if err != nil {
+		fmt.Println("Ошибка чтения файла")
+		return binList
+	}
+
+	err = json.Unmarshal(file, &binList)
+	if err != nil {
+		fmt.Println("Ошибка разбора json файла")
+		return binList
+	}
+	return binList*/
+	return bins.ReadBinList(binList)
+}
+
+func writeBinList(binList bins.BinList) {
+
+	bins.WriteBinList(binList)
+	/*data, err := json.Marshal(binList)
+	if err != nil {
+		fmt.Println("Ошибка преобразования")
+		return
+	}
+	//fmt.Println(string(data))
+	//data, err := binList
+
+	storage.WriteFile(data, "storage.json")*/
 }
 
 func getMenu() int {
@@ -33,7 +67,9 @@ func getMenu() int {
 	fmt.Println("1. Посмотреть структуру")
 	fmt.Println("2. Добавить структуру")
 	fmt.Println("3. Удалить структуру")
-	fmt.Println("4. Выход")
+	fmt.Println("4. Сохранить структуру в файл")
+	fmt.Println("5. Прочитать структуру из файла")
+	fmt.Println("6. Выход")
 	fmt.Scan(&variant)
 	return variant
 }
