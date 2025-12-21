@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"strconv"
 	"struct/list/bins"
+	"struct/list/file"
 	"time"
 )
 
 func main() {
 	binList := bins.BinList{}
 
+	var d file.Db = file.NewFileDb("storage.json")
 	fmt.Println("Приложение для структуры")
 Menu:
 	for {
@@ -22,16 +24,16 @@ Menu:
 		case 3:
 			binList = deleteBinList(binList)
 		case 4:
-			writeBinList(binList)
+			writeBinList(binList, d)
 		case 5:
-			binList = readBinList(binList)
+			binList = readBinList(binList, d)
 		case 6:
 			break Menu
 		}
 	}
 }
 
-func readBinList(binList bins.BinList) bins.BinList {
+func readBinList(binList bins.BinList, db file.Db) bins.BinList {
 	/*file, err := storage.ReadFile("storage.json")
 	if err != nil {
 		fmt.Println("Ошибка чтения файла")
@@ -44,12 +46,12 @@ func readBinList(binList bins.BinList) bins.BinList {
 		return binList
 	}
 	return binList*/
-	return bins.ReadBinList(binList)
+	return bins.ReadBinList(binList, db)
 }
 
-func writeBinList(binList bins.BinList) {
+func writeBinList(binList bins.BinList, db file.Db) {
 
-	bins.WriteBinList(binList)
+	bins.WriteBinList(binList, db)
 	/*data, err := json.Marshal(binList)
 	if err != nil {
 		fmt.Println("Ошибка преобразования")

@@ -20,21 +20,21 @@ type Bin struct {
 
 type BinList = []Bin
 
-func WriteBinList(binList BinList) {
+func WriteBinList(binList BinList, db file.Db) {
 
 	data, err := json.Marshal(binList)
 	if err != nil {
 		fmt.Println("Ошибка преобразования")
 		return
 	}
-	var d file.Db = file.NewFileDb("storage.json")
-	d.Write(data)
+	//var d file.Db = file.NewFileDb("storage.json")
+	db.Write(data)
 	//file.WriteFile(data, "storage.json")
 }
 
-func ReadBinList(binList BinList) BinList {
-	var d file.Db = file.NewFileDb("storage.json")
-	data, err := d.Read()
+func ReadBinList(binList BinList, db file.Db) BinList {
+	//var d file.Db = file.NewFileDb("storage.json")
+	data, err := db.Read()
 
 	//file, err := file.ReadFile("storage.json")
 	if err != nil {
