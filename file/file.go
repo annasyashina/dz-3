@@ -9,7 +9,7 @@ import (
 
 func ReadFile(name string) ([]byte, error) {
 	ext := filepath.Ext(name)
-	if ext == "json" {
+	if ext == ".json" {
 		data, err := os.ReadFile(name)
 		if err != nil {
 			fmt.Println(err)
@@ -24,7 +24,7 @@ func ReadFile(name string) ([]byte, error) {
 
 func WriteFile(content []byte, name string) {
 	ext := filepath.Ext(name)
-	if ext == "json" {
+	if ext == ".json" {
 		file, err := os.Create(name)
 		if err != nil {
 			fmt.Println(err)
