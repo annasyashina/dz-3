@@ -3,11 +3,17 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"struct/list/api"
 	"struct/list/bins"
+	"struct/list/config"
 	"time"
 )
 
 func main() {
+
+	conf := config.NewConfig()
+	api.ReadKey(*conf)
+
 	binList := bins.BinList{}
 
 	fmt.Println("Приложение для структуры")
